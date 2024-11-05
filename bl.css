@@ -1,0 +1,666 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    outline: none;
+    font-family: "Roboto", sans-serif;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+/* Estilo básico para o header liso */
+header {
+  position: fixed;
+  width: 100%;
+  background-color: #115a08; /* Cor de fundo sólida e elegante */
+  padding: 15px 0; /* Espaçamento interno */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra sutil para dar profundidade */
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;  
+  max-width: 1200px; /* Max-width para limitar a largura do conteúdo */
+  margin: 0 auto;    /* Centraliza o conteúdo */
+  padding: 0 20px;   /* Espaçamento nas laterais */
+  
+}
+.logo{
+    display: flex;
+    
+}
+.logoRD{
+  display: flex;
+}
+.logo1{
+width: 30px;
+height: 30px;
+border-radius: 50%;
+}
+
+.logo h1 {
+  color: white; /* Cor do texto branco */
+  font-size: 1.8rem; /* Tamanho do logo */
+  font-weight: bold; /* Texto em negrito */
+  margin: 0; /* Remove margens extras */
+  
+}
+#openmenu{
+display: none;
+}
+#close{
+display: none;
+}
+
+nav ul {
+  list-style: none; /* Remove bullets */
+  display: flex;
+  gap: 20px; /* Espaçamento entre itens */
+}
+
+nav ul li {
+  margin: 0; /* Remove margem padrão */
+}
+
+nav ul li a {
+  color: white; /* Cor do texto branco */
+  text-decoration: none; /* Remove sublinhado */
+  font-size: 1.4rem; /* Tamanho do texto */
+  font-weight: 500; /* Seminegrito */
+  /* Transição suave na cor */
+}
+
+nav ul li a::after{
+  content: "";
+  background-color: white;
+  height: 3px;
+  width: 0%;
+  display: block;
+  margin: 0 auto;
+  transition: 0.5s; 
+}
+
+nav ul li a:hover::after {
+  width: 100%; /* Efeito hover com cor verde suave */
+}
+.section-destaque {
+    background: url('img/Background\ for\ poster\,\ banner\ And\ cover\ [Rewpixel].jpg') no-repeat center center/cover;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    }
+    footer {
+      background: #115a08;
+      color: #fff;
+      padding: 20px 0;
+      text-align: center;
+      }
+      
+      
+      .destaque-content {
+      max-width: 600px;
+      }
+      
+      .destaque-content h2 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      }
+      
+      .destaque-content p {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      }
+      
+      #exploreButton {
+      padding: 10px 20px;
+      background: none;
+      color: rgb(0, 0, 0);
+      border: 2% ;
+      border-color: #115a08;
+      cursor: pointer;
+      font-size: 1rem;
+      border-radius: 5px;
+      transition: 0.5s;
+      }
+      
+      #exploreButton:hover {
+      background: #115a08;
+      color: white;
+      border: none;
+      }
+  
+
+
+      h1, h2 {
+        text-align: center;
+        color: #333;
+    }
+    
+    form, #bookdtList, #bookdtform {
+        max-width: 80% 0px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    #bookdtList{
+      display: grid;
+    }
+    
+    form label {
+        display: block;
+        margin-top: 10px;
+       
+    }
+    .remove-btn {
+      background-color: #ff4c4c;
+      color: white;
+      padding: 5px;
+      border: none;
+      cursor: pointer;
+    }
+    form input, form textarea, form button {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+    }
+    
+    form button {
+        background-color: #115a08;
+        color: white;
+        border: none;
+        padding: 10px;
+        cursor: pointer;
+        margin-top: 15px;
+    }
+    
+    form button:hover {
+        background-color: #115a08;
+    }
+    
+    
+ /* Estilo para o container de cada livro */
+.livro-item {
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s;
+  width: 100%;
+  max-width: 100%;
+  min-height: 250px auto; /* Altura mínima para garantir consistência */
+}
+
+/* Configuração para o título para truncar se for longo */
+.livro-item h3 {
+  font-size: 1.5rem;
+  color: #333333;
+  margin-bottom: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap; /* Impede que o título quebre para a próxima linha */
+}
+
+/* Configuração para o parágrafo de descrição para truncar com limite de altura */
+.livro-item p {
+  font-size: 1rem;
+  color: #666666;
+  margin-bottom: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 5 auto; /* Limita a 5 linhas de texto */
+  -webkit-box-orient: vertical;
+}
+
+/* Botão para acessar o livro */
+.acessar {
+  display: inline-block;
+  padding: 10px 15px;
+  background-color: #115a08;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  margin-top: 10px;
+}
+
+.acessar:hover {
+  background-color: #0d4e06;
+}
+
+
+
+    #bookdts{
+      display: block;
+      background-color: white;
+      margin: 2%;
+      padding: 1%;
+    
+    }
+    /* Estilo geral */
+
+
+h2 {
+  text-align: center;
+  color: #115a08;
+  margin: 20px 0;
+}
+
+/* Biblioteca */
+#biblioteca {
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.livros-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+/* Card do livro */
+.livro-item {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.livro-info {
+  padding: 15px;
+}
+
+.livro-info h3 {
+  font-size: 1.2rem;
+  color: #115a08;
+  margin-bottom: 8px;
+}
+
+.livro-info p {
+  font-size: 0.9rem;
+  color: #555;
+  margin: 5px 0;
+}
+
+.livro-descricao {
+  font-size: 0.85rem;
+  margin-top: 10px;
+}
+
+/* Botão de acessar */
+.livro-footer {
+  text-align: center;
+  padding: 10px;
+  background-color: #e0e0e0;
+}
+
+.btn-acessar {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #115a08;
+  color: #fff;
+  text-decoration: none;
+  font-size: 1rem;
+  border-radius: 5px;
+}
+
+.btn-acessar:hover {
+  background-color: #0e4a07;
+}
+/* Estilo geral */
+
+
+h2 {
+    text-align: center;
+    color: #115a08;
+    margin: 20px 0;
+}
+
+/* Biblioteca */
+.livro-link {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.livro-link:hover {
+  background-color: #0056b3;
+}
+
+#biblioteca {
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.livros-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+
+section {
+  margin-bottom: 20px;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+  margin-top: 0;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin: 10px 0 5px;
+}
+
+input, textarea {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  background-color: #28a745;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #218838;
+}
+
+#lista-livros {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+/* Card do livro */
+.livro-item {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.livro-info {
+  padding: 15px;
+}
+
+.livro-info h3 {
+  font-size: 1.2rem;
+  color: #115a08;
+  margin-bottom: 8px;
+}
+
+.livro-info p {
+  font-size: 0.9rem;
+  color: #555;
+  margin: 5px 0;
+}
+
+.livro-descricao {
+  font-size: 0.85rem;
+  margin-top: 10px;
+}
+
+/* Botão de acessar */
+.livro-footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #e0e0e0;
+}
+
+.btn-acessar {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #115a08;
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    border-radius: 5px;
+}
+
+.btn-acessar:hover {
+    background-color: #0e4a07;
+}
+
+#livros-disponiveis {
+  text-align: center;
+  padding: 40px;
+}
+
+#livros-disponiveis h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.livros-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.livro-item {
+  background-color: #ffffff;
+  width: 300px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: left;
+}
+
+.livro-item h3 {
+  font-size: 1.5rem;
+  color: #333333;
+}
+
+.livro-item p {
+  color: #555555;
+  line-height: 1.6;
+}
+
+.acessar-livro {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #0d4e06;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+.acessar-livro:hover {
+  background-color: #005fa3;
+}
+
+
+.remove-btn {
+  background-color: #dc3545; /* Vermelho */
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.remove-btn:hover {
+  background-color: #c82333; /* Vermelho escuro */
+}
+
+    
+  
+
+
+
+/* Personalização da barra de rolagem */
+.scroll-container {
+    overflow: auto; /* Permite rolagem */
+  }
+  
+  /* Personalizando a barra de rolagem */
+  ::-webkit-scrollbar {
+    width: 5px; /* Largura da barra de rolagem */
+  }
+  
+  /* Parte da barra de rolagem */
+  ::-webkit-scrollbar-thumb {
+    background-color: #115a08; /* Cor do "thumb" da barra */
+    border-radius: 10px; /* Bordas arredondadas */
+  }
+  
+  /* Parte da barra de rolagem quando está em hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #37ff00; /* Cor do "thumb" em hover */
+  }
+  
+  /* Parte de fundo da barra de rolagem */
+  ::-webkit-scrollbar-track {
+    background-color: none; /* Cor do fundo da barra de rolagem */
+    border-radius: 10px; /* Bordas arredondadas */
+  }
+@media (max-width: 843px) {
+    
+    .header-container {
+        flex-direction: column; /* Em telas pequenas, organiza verticalmente */
+    }
+    
+  
+      ul  {
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+        flex-direction: column; /* Links da nav em pilha */
+        background-color: #115a08;
+        width: 100%;
+        height: 100%;
+        align-items: center; /* Centraliza links */
+         grid-column: 10px;
+         justify-content: center;/* Diminui o espaço entre itens */
+         clip-path: circle(0% at 100% 0);
+         transition: 0.7s;
+  
+    }
+    
+      .open{
+        
+  
+          clip-path: circle(141.1% at 100% 0%);
+          
+      }
+     
+    
+    .fa-solid{
+      display: block;
+      color: white;
+      position: absolute;
+      top: 5px;
+      right: 28px;
+      justify-content: left;
+      margin: 0;
+      font-size: 30px;
+      cursor: pointer;
+  
+    }
+    .fa-solid{
+      display: block;
+      color: white;
+      position: absolute;
+      top: 5px;
+      right: 28px;
+      justify-content: left;
+      margin: 0;
+      font-size: 30px;
+      cursor: pointer;
+  
+    }
+      .fa-solid{
+        display: block;
+        position: absolute;
+        top: 5px;
+        right: 28px;
+        justify-content: left;
+        margin: 0;
+        width: 30px;
+        height: 30px;
+        cursor: pointer;
+      }
+      #close{
+        display: block;
+        font-size: 30px;
+        padding: 10%;
+        border-radius: 50%;
+        
+      }
+      #openmenu{display: block;}
+  #bookdts{
+    width: 100%;
+  }
+    #bookResults {
+        display: block;
+        align-items: center;
+        
+        
+      }
+      
+      
+      .bookdt-item {
+        background: white;
+        padding: 15px;
+        margin-bottom: 10px;
+        border-radius: 0;
+        border: 1px solid black;
+        text-align: left;
+        width: 100%;
+        height: auto;
+      }
+      .livro-item{
+        width: 100%;
+      }
+      .livro-item {
+        width: 100%; /* Altura mínima para garantir consistência */
+        max-width: 100%;
+      }
+}
+  

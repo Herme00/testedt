@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <title>Admin I.T.P.S</title>
+    
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logoRD">
+            <div class="logo">
+                <a href="index.html"><img class="logo1" src="img/download.jfif" alt=""></a><h1>Dois Talentos</h1></div>
+                <i class="fa-solid fa-bars" id="openmenu" onclick="openmenu()"></i>
+                
+                
+                
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="admin.html">Início</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="portofolio.html">Eventos</a></li>
+                    <li><a href="biblioteca.php">Biblioteca</a></li>
+                    <li><a href="https://herme07.github.io/hermemarketing.ao/contato.html">Ajuda</a></li>
+                    <a href="login-portal.html" class="btn-entrar">Portal</a>
+                    <div>
+                     <i class="fa-solid fa-circle-xmark" id="close"  onclick="closemenu()" ></i>
+                    </div>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+<h1>Publicar Eventos</h1>
+<form id="eventoForm">
+    <label for="titulo">Título:</label>
+    <input type="text" id="titulo" required>
+
+    <label for="data">Data:</label>
+    <input type="date" id="data" required>
+
+    <label for="descricao">Descrição:</label>
+    <textarea id="descricao" required></textarea>
+
+    <label for="local">Local:</label>
+    <input type="text" id="local" required>
+
+    <label for="imagem">Imagem:</label>
+    <input type="file" id="imagem" accept="image/*" required>
+
+    <button type="submit">Publicar Evento</button>
+</form>
+
+<h2>Eventos Publicados</h2>
+<div id="lista-eventos"></div>
+
+<script>
+    let ul = document.querySelector(`ul`)
+function openmenu(){
+   ul.classList.add(`open`)
+}
+function closemenu(){
+   ul.classList.remove(`open`)
+}
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const eventoForm = document.getElementById("eventoForm");
+    const listaEventos = document.getElementById("lista-eventos");
+
+    // Função para carregar eventos do servidor
+    async function carregarEventos() {
+        try {
+            const response = await fetch('/api/eventos'); // Endpoint para obter eventos
+            const eventos = await response.json();
+
+            listaEventos.innerHTML = ""; // Limpa a lista atual
+
+            eventos.forEach((evento, index) => {
+                const eventoItem = document.createElement("div");
+                eventoItem.classList.add("evento-item");
+                eventoItem.innerHTML = `
+                    <div class="evento-info">
+                        <h3>${evento.titulo}</h3>
+                        <p><strong>Data:</strong> ${evento.data}</p>
+                        <p><strong>Descrição:</strong> ${evento.descricao}</p>
+                        <p><strong>Local:</strong> ${evento.local}</p>
+                        <img src="${evento.imagem}" class="evento-imagem" alt="Imagem do evento">
+                        <button class="remove-btn" onclick="removerEvento('${evento.id}')">Remover</button>
+                    </div>
+                `;
+                listaEventos.appendChild(eventoItem);
+            });
+        } catch (error) {
+            console.error('Erro ao carregar eventos:', error);
+        }
+    }
+
+    // Chama a função para carregar eventos ao iniciar a página
+    carregarEventos();
+
+    // Adiciona evento ao formulário para publicar eventos
+    eventoForm.addEventListener("submit", async function(event) {
+        event.preventDefault(); // Impede o envio do formulário
+
+        // Captura os valores dos inputs
+        const titulo = document.getElementById("titulo").value;
+        const data = document.getElementById("data").value;
+        const descricao = document.getElementById("descricao").value;
+        const local = document.getElementById("local").value;
+        const imagemInput = document.getElementById("imagem");
+
+        // Lê a imagem como URL base64
+        const reader = new FileReader();
+        reader.onload = async function(e) {
+            const novoEvento = {
+                titulo,
+                data,
+                descricao,
+                local,
+                imagem: e.target.result // URL base64 da imagem
+            };
+
+            try {
+                // Envia o novo evento para o servidor
+                const response = await fetch('/api/eventos', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(novoEvento)
+                });
+
+                if (response.ok) {
+                    alert("Evento postado com sucesso!");
+                    eventoForm.reset();
+                    carregarEventos(); // Recarrega a lista de eventos
+                } else {
+                    console.error("Erro ao postar evento:", response.statusText);
+                }
+            } catch (error) {
+                console.error("Erro ao enviar dados:", error);
+            }
+        };
+
+        reader.readAsDataURL(imagemInput.files[0]);
+    });
+
+    // Função para remover evento
+    window.removerEvento = async function(eventoId) {
+        try {
+            const response = await fetch(`/api/eventos/${eventoId}`, {
+                method: 'DELETE'
+            });
+
+            if (response.ok) {
+                alert("Evento removido com sucesso!");
+                carregarEventos(); // Recarrega a lista de eventos
+            } else {
+                console.error("Erro ao remover evento:", response.statusText);
+            }
+        } catch (error) {
+            console.error("Erro ao remover evento:", error);
+        }
+    };
+});
+
+
+</script>
+</body>
+</html>

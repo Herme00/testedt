@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Admin I.T.P.S</title>
+    
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logoRD">
+            <div class="logo">
+                <a href="index.html"><img class="logo1" src="img/download.jfif" alt=""></a><h1>Dois Talentos</h1></div>
+                <i class="fa-solid fa-bars" id="openmenu" onclick="openmenu()"></i>
+                
+                
+                
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="admin.html">Início</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="portofolio.html">Eventos</a></li>
+                    <li><a href="biblioteca.php">Biblioteca</a></li>
+                    <li><a href="https://herme07.github.io/hermemarketing.ao/contato.html">Ajuda</a></li>
+                    <a href="login-portal.html" class="btn-entrar">Portal</a>
+                    <div>
+                     <i class="fa-solid fa-circle-xmark" id="close"  onclick="closemenu()" ></i>
+                    </div>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+    <hr>
+
+    <h1>Adicionar Notícia</h1>
+    <form id="noticiaform">
+        <input type="text" id="title" placeholder="Título" required><br><br>
+        <textarea id="content" placeholder="Conteúdo" required></textarea><br><br>
+        <input type="file" id="image" accept="image/*"><br><br>
+        <button type="submit">Publicar Notícia</button>
+    </form>
+
+    <h2>Notícias Publicadas</h2>
+    <div class="news-section" id="news-section"></div>
+    <hr>
+     <a href="index.html">visualizar</a>
+
+    <script src="admin.js">
+      
+    </script>
+
+</body>
+</html>

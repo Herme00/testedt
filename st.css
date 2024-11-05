@@ -1,0 +1,221 @@
+/* Estilização global */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+    color: #333;
+}
+
+h1, h2 {
+    text-align: center;
+    color: #115a08;
+    margin-bottom: 20px;
+}
+
+/* Link de navegação */
+a {
+    margin: 0;
+    color: white;
+    background-color: #115a08;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+a:hover {
+    background-color: #0c4906;
+}
+
+/* Estilização do formulário */
+form {
+    max-width: 600px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin: 0 auto 40px auto;
+}
+
+form input[type="text"], form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+form textarea {
+    height: 150px;
+    resize: none;
+}
+
+form input[type="file"] {
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+form button {
+    width: 100%;
+    padding: 12px;
+    background-color: #115a08;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #0c4906;
+}
+
+/* Seção de notícias */
+.news-section {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.news-item {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.news-image {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.news-title {
+    font-size: 22px;
+    color: #115a08;
+    margin-bottom: 10px;
+}
+
+.news-content {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #555;
+}
+h1, h2 {
+    text-align: center;
+    color: #333;
+  }
+  
+  form, #bookList, #bookform {
+    max-width: 80% 0px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  form label {
+    display: block;
+    margin-top: 10px;
+  }
+  
+  form input, form textarea, form button {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+  }
+  
+  form button {
+    background-color: #0c4906;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    margin-top: 15px;
+  }
+  
+  form button:hover {
+    background-color: chartreuse;
+  }
+  
+  .livro {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+  }
+  .acessar{
+    color: black;
+    background-color: #ccc;
+    text-decoration: none;
+    font-size: 18px;
+    transition: color 0.3s;
+    display: block;
+    padding: 10px;
+    text-align: center;
+  }
+  .acessar:hover{
+  background-color: #0c4906;
+  color: white;
+  }
+  
+  
+/* Responsividade */
+@media screen and (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    form {
+        padding: 15px;
+    }
+
+    h1, h2 {
+        font-size: 1.5em;
+    }
+
+    form input[type="text"], form textarea {
+        font-size: 14px;
+    }
+
+    form button {
+        font-size: 16px;
+    }
+
+    .news-section {
+        padding: 0 10px;
+    }
+
+    .news-item {
+        padding: 15px;
+    }
+
+    .news-title {
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    form {
+        padding: 10px;
+    }
+
+    form input[type="text"], form textarea {
+        font-size: 13px;
+    }
+
+    form button {
+        font-size: 15px;
+    }
+
+    .news-title {
+        font-size: 18px;
+    }
+}

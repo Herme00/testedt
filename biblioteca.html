@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca</title>
+    <link rel="stylesheet" href="bl.css">
+</head>
+<body>
+           
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img class="logo1" src="img/download.jfif" alt="">
+                <i class="fa-solid fa-bars"  id="openmenu" onclick="openmenu()" ></i>
+                
+                <h1>Dois Talentos</h1>
+                
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="serviços.html">Serviços</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                    <li><a href="biblioteca.html">Biblioteca</a></li>
+                    <li><a href="portofolio.html">Eventos</a></li>
+                    <div class="close">
+                     <i class="fa-solid fa-circle-xmark" id="close"  onclick="closemenu()" ></i>
+                    </div>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <section id="destaque" class="section-destaque" style="background-image: url(img/download\ \(5\).jfif);">
+        <div class="destaque-content">
+            <h2 style="color: black;">Localização Dois Talentos</h2>
+            <p style="color: black;">Descubra onde estamos localizados de forma rapida e pratica.</p>
+            <button id="exploreButton">Explore Mais</button>
+        </div>
+    </section>
+
+   
+    <section id="livros-publicados">
+        <h2>Livros Publicados</h2>
+        <div id="lista-livros"></div>
+    </section>
+    <footer>
+        <p>&copy; 2024 Dois Talentos. Todos os direitos reservados.Herme Marketing</p>
+    </footer>
+    <script src="biblioteca.js"></script>
+</body>
+</html>

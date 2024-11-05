@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensagens do Contato</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .mensagem {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+        h2 {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h2>Mensagens Recebidas</h2>
+    <div id="mensagens"></div>
+
+    <script>
+    // Recupera as mensagens do localStorage
+    const mensagensDiv = document.getElementById('mensagens');
+    const contatos = JSON.parse(localStorage.getItem('contatos')) || [];
+
+    contatos.forEach(contato => {
+        const div = document.createElement('div');
+        div.classList.add('mensagem');
+        div.innerHTML = `<strong>Nome:</strong> ${contato.nome}<br>
+                         <strong>Telefone:</strong> ${contato.telefone}<br>
+                         <strong>Mensagem:</strong> ${contato.mensagem}<br>
+                         <strong>Data:</strong> ${new Date(contato.data).toLocaleString()}`;
+        mensagensDiv.appendChild(div);
+    });
+    </script>
+</body>
+</html>

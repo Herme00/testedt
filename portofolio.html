@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Eventos - Dois Talentos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <a href="chat.html"><div class="fixed-icon">
+        <i class="fas fa-comment-dots"></i> <!-- Ícone Font Awesome -->
+    </div></a>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img class="logo1" src="img/download.jfif" alt="">
+                <i class="fa-solid fa-bars"  id="openmenu" onclick="openmenu()" ></i>
+                
+                <h1>Dois Talentos
+        
+                </h1>
+                
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="serviços.html">Serviços</a></li>
+                    <li><a href="contato.html">Contato</a></li>
+                    <li><a href="biblioteca.html">Biblioteca</a></li>
+                    <li><a href="portofolio.html">Eventos</a></li>
+                    <div>
+                      <i class="fa-solid fa-circle-xmark" id="close"  onclick="closemenu()" ></i>
+                    </div>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="destaque" class="section-destaque" style="background-image: url(img/Background\ for\ poster\,\ banner\ And\ cover\ [Rewpixel].jpg)/center;">
+        <div class="destaque-content">
+            <h2 style="color: black;">Nossos Eventos</h2>
+            <p style="color: black;">
+                Aqui estão alguns dos projetos realizados por nossos alunos e colaboradores nas áreas de saúde e análises clínicas.</p>
+            <button id="exploreButton">Explore Mais</button>
+        </div>
+    </section>
+
+            
+    <section class="eventos-container" id="eventosContainer">
+        <h2>Eventos Publicados</h2>
+<div id="lista-eventos"></div>
+    </section>
+    
+    
+
+    <!-- Link para Font Awesome -->
+    
+
+    <footer>
+        <p>&copy; 2024 Dois Talentos- Eventos. Todos os direitos reservados.</p>
+    </footer>
+    <script src="portofolio.js"></script>
+   
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Chatbox para Alunos</title>
+
+</head>
+<body>
+       <!-- Botão de Voltar -->
+    <div class="back-button" onclick="history.back()">
+        <i class="fas fa-arrow-left"></i>
+    </div>
+
+    <!-- Link para Font Awesome -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+
+    <div class="popup-container" id="popupContainer">
+        <div class="popup" id="popup">
+            <h2>Bem-vindo!</h2>
+            <p>Estamos felizes em vê-lo aqui. Confira as mensagens em nosso site!
+                <p><strong>Atenção</strong> Sua mensagem não é  anônima</p>
+            </p>
+            <button onclick="fecharPopup()">Fechar</button>
+        </div>
+    </div>
+    <div class="chatbox">
+        <h2>Chat para Alunos</h2>
+        <div id="chat-content" class="chat-content">
+            <!-- Mensagens carregadas aqui -->
+        </div>
+        <form id="chat-form">
+            <input type="text" id="message-input" placeholder="Digite sua mensagem..." autocomplete="off">
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+
+   
+    
+    <!-- Sidebar com informações importantes -->
+    <div class="sidebar360">
+        <div class="main-content360">
+            <h1>Bem-vindo à Escola Técnica Dois Talentos</h1>
+            <p>Aqui você encontrará informações sobre nossos cursos e eventos.</p>
+            <!-- Adicione mais conteúdo aqui -->
+        </div>
+        <h2>Informações Importantes</h2>
+        <p><strong>Endereço:</strong> Bairro São João Popular, Huambo, Angola</p>
+        <p><strong>Telefone:</strong> +244 935 659 439</p>
+        <p><strong>E-mail:</strong> <a href="mailto:doistalentos2@gmail.com">doistalentos2@gmail.com</a></p>
+        <p><strong>Horário de Funcionamento:</strong> Segunda a Sexta, das 08:00 às 17:00</p>
+        <p><strong>Eventos Futuros:</strong> Confira nosso calendário de eventos e participe!</p>
+    </div>
+    
+
+    <script >
+            // Função para exibir o pop-up ao carregar a página
+    window.onload = function() {
+        const popupContainer = document.getElementById('popupContainer');
+        const popup = document.getElementById('popup');
+        
+        popupContainer.classList.add('show');
+        popup.classList.add('show'); // Adiciona a classe para animação de escala
+    };
+
+    // Função para fechar o pop-up
+    function fecharPopup() {
+        const popupContainer = document.getElementById('popupContainer');
+        const popup = document.getElementById('popup');
+        
+        popupContainer.classList.remove('show');
+        popup.classList.remove('show'); // Remove a classe de animação de escala
+    }
+
+        document.addEventListener("DOMContentLoaded", () => {
+    const chatContent = document.getElementById("chat-content");
+    const chatForm = document.getElementById("chat-form");
+    const messageInput = document.getElementById("message-input");
+
+    // Carrega mensagens ao iniciar e remove as que têm mais de 7 dias
+    loadMessages();
+
+    // Função para carregar e renderizar mensagens
+    function loadMessages() {
+        const messages = JSON.parse(localStorage.getItem("messages")) || [];
+
+        // Filtra mensagens que ainda estão dentro do período de 7 dias
+        const sevenDaysInMilliseconds = 7 * 24 * 60 * 60 * 1000;
+        const currentTime = Date.now();
+        const recentMessages = messages.filter(msg => currentTime - msg.timestamp <= sevenDaysInMilliseconds);
+
+        // Atualiza o localStorage com as mensagens válidas
+        localStorage.setItem("messages", JSON.stringify(recentMessages));
+
+        // Exibe as mensagens na tela
+        chatContent.innerHTML = recentMessages.map(msg => `
+            <div class="message aluno">
+                <p>${msg.text}</p>
+                <small>${new Date(msg.timestamp).toLocaleString()}</small>
+            </div>
+        `).join("");
+
+        // Rola para a última mensagem automaticamente
+        chatContent.scrollTop = chatContent.scrollHeight;
+    }
+
+    // Adiciona uma nova mensagem
+    chatForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+        const messageText = messageInput.value.trim();
+        
+        if (messageText) {
+            const newMessage = {
+                text: messageText,
+                timestamp: Date.now()
+            };
+            
+            // Adiciona a mensagem ao armazenamento local
+            const messages = JSON.parse(localStorage.getItem("messages")) || [];
+            messages.push(newMessage);
+            localStorage.setItem("messages", JSON.stringify(messages));
+            
+            // Limpa o campo de entrada e recarrega as mensagens
+            messageInput.value = "";
+            loadMessages();
+        }
+    });
+});
+  
+    </script>
+</body>
+</html>

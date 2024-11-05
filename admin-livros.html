@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bl.css"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <title>Admin I.T.P.S</title>
+    
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logoRD">
+            <div class="logo">
+                <a href="index.html"><img class="logo1" src="img/download.jfif" alt=""></a><h1>Dois Talentos</h1></div>
+                <i class="fa-solid fa-bars" id="openmenu" onclick="openmenu()"></i>
+                
+                
+                
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="admin.html">Início</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="portofolio.html">Eventos</a></li>
+                    <li><a href="biblioteca.php">Biblioteca</a></li>
+                    <li><a href="https://herme07.github.io/hermemarketing.ao/contato.html">Ajuda</a></li>
+                    
+                    <div>
+                     <i class="fa-solid fa-circle-xmark" id="close"  onclick="closemenu()" ></i>
+                    </div>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+
+    <hr>
+    <section id="publicar-livro">
+        <h2>Adicionar Livro</h2>
+            
+        <form id="livroForm">
+            <label for="titulo">Título:</label>
+            <input type="text" name="titulo" id="titulo" required>
+        
+            <label for="autor">Autor:</label>
+            <input type="text" name="autor" id="autor" required>
+        
+            <label for="ano">Ano:</label>
+            <input type="number" name="ano" id="ano" required>
+        
+            <label for="descricao">Descrição:</label>
+            <textarea id="descricao" name="descricao" required></textarea>
+        
+            <label for="url">URL do Livro:</label>
+            <input type="url" name="url" id="url" required>
+        
+            <button type="submit">Publicar Livro</button>
+        </form>
+        
+        <div id="lista-livros"></div>
+        
+
+    </section>
+
+    <section id="livros-publicados">
+        <h2>Livros Publicados</h2>
+        <div id="lista-livros"></div>
+    </section>
+
+
+    <script>
+        let ul = document.querySelector(`ul`)
+function openmenu(){
+   ul.classList.add(`open`)
+}
+function closemenu(){
+   ul.classList.remove(`open`)
+}
+  
+document.addEventListener("DOMContentLoaded", () => {
+    const livroForm = document.getElementById("livroForm");
+    const listaLivros = document.getElementById("lista-livros");
+
+    // Carregar livros do servidor
+    async function carregarLivros() {
+        try {
+            const response = await fetch('/api/livros'); // Endpoint para obter a lista de livros
+            const livros = await response.json();
+
+            listaLivros.innerHTML = ""; // Limpa a lista atual
+
+            livros.forEach((livro, index) => {
+                const livroItem = document.createElement("div");
+                livroItem.classList.add("livro-item");
+                livroItem.innerHTML = `
+                    <div class="livro-info">
+                        <h3>${livro.titulo}</h3>
+                        <p><strong>Autor:</strong> ${livro.autor}</p>
+                        <p><strong>Ano:</strong> ${livro.ano}</p>
+                        <p class="livro-descricao">${livro.descricao}</p>
+                        <a href="${livro.url}" target="_blank" class="livro-link">Acessar Livro</a>
+                        <button class="remove-btn" onclick="removerLivro('${livro.id}')">Remover</button>
+                    </div>
+                `;
+                listaLivros.appendChild(livroItem);
+            });
+        } catch (error) {
+            console.error('Erro ao carregar livros:', error);
+        }
+    }
+
+    // Chama a função para carregar livros ao iniciar a página
+    carregarLivros();
+
+    livroForm.addEventListener("submit", async function(event) {
+        event.preventDefault(); // Impede o envio do formulário
+
+        // Captura os valores dos inputs
+        const titulo = document.getElementById("titulo").value;
+        const autor = document.getElementById("autor").value;
+        const ano = document.getElementById("ano").value;
+        const descricao = document.getElementById("descricao").value;
+        const urlLivro = document.getElementById("url").value;
+
+        const novoLivro = { titulo, autor, ano, descricao, url: urlLivro };
+
+        try {
+            // Envia o novo livro para o servidor
+            const response = await fetch('/api/livros', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(novoLivro)
+            });
+
+            if (response.ok) {
+                alert("Livro adicionado com sucesso!");
+                livroForm.reset();
+                carregarLivros(); // Recarrega a lista de livros
+            } else {
+                console.error("Erro ao adicionar livro:", response.statusText);
+            }
+        } catch (error) {
+            console.error("Erro ao enviar dados:", error);
+        }
+    });
+
+    // Função para remover livro
+    window.removerLivro = async function(livroId) {
+        try {
+            const response = await fetch(`/api/livros/${livroId}`, {
+                method: 'DELETE'
+            });
+
+            if (response.ok) {
+                alert("Livro removido com sucesso!");
+                carregarLivros(); // Recarrega a lista de livros
+            } else {
+                console.error("Erro ao remover livro:", response.statusText);
+            }
+        } catch (error) {
+            console.error("Erro ao remover livro:", error);
+        }
+    };
+});
+
+    </script>
+
+</body>
+</html>
